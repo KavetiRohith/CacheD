@@ -126,7 +126,7 @@ func (s *Server) parseCommand(conn net.Conn, rawCmd []byte) {
 		s.handleDel(conn, key)
 
 	default:
-		conn.Write([]byte("Invalid command in message"))
+		conn.Write([]byte("Invalid command in message\n"))
 	}
 }
 
