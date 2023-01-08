@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"errors"
 	"flag"
 	"fmt"
 	"log"
@@ -81,9 +83,19 @@ func join(joinAddr, nodeID, raftAddr string) error {
 
 	defer conn.Close()
 
-	_, err = fmt.Fprintf(conn, "JOIN %s %s", nodeID, raftAddr)
+	_, err = fmt.Fprintf(conn, "JOIN %s %s\n", nodeID, raftAddr)
 	if err != nil {
 		return err
+	}
+
+	r := bufio.NewReader(conn)
+	msg, err := r.ReadString(byte('\n'))
+	if err != nil {
+		return err
+	}
+
+	if msg != "Success\n" {
+		return errors.New(msg)
 	}
 
 	return nil
