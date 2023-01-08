@@ -10,8 +10,8 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/KavetiRohith/GoCached/server"
-	"github.com/KavetiRohith/GoCached/store"
+	"github.com/KavetiRohith/CacheD/server"
+	"github.com/KavetiRohith/CacheD/store"
 )
 
 // Command line defaults
@@ -66,12 +66,12 @@ func main() {
 		}
 	}
 
-	log.Println("GoCached started successfully")
+	log.Println("CacheD started successfully")
 
 	terminate := make(chan os.Signal, 1)
 	signal.Notify(terminate, os.Interrupt)
 	<-terminate
-	log.Println("GoCached exiting")
+	log.Println("CacheD exiting")
 }
 
 func join(joinAddr, nodeID, raftAddr string) error {

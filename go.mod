@@ -1,4 +1,4 @@
-module github.com/KavetiRohith/GoCached
+module github.com/KavetiRohith/CacheD
 
 go 1.19
 
